@@ -68,15 +68,24 @@ export class BaileysProvider implements WhatsappProvider {
     }
 
     async disconnect(): Promise<void> {
-        throw new Error("Method not implemented.");
+        this.sock?.end(undefined);
+        this.connected = false;
     }
 
     async sendMessage(groupId: string, text: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        if (!this.connected || !this.sock){
+            this.logger.error('No se puede enviar: WhatsApp no conectado.');
+            return false;
+        }
+
+        const jid = `${groupId}@g.us`;
+        await this.sock.sendMessage(jid, {text});
+        this.logger.log(`Mensaje enviado a ${jid}`);
+        return true;
     }
 
     isConnected(): boolean {
-        throw new Error("Method not implemented.");
+        return this.connected;
     }
 
 }
