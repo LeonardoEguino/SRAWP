@@ -53,11 +53,11 @@ describe('WhatsappService', () => {
     });
   });
 
-  describe('getStatus', () => {
+  describe('isConnected', () => {
     it('debe retornar el estado del proveedor', () => {
       const status = service.isConnected();
       expect(mockProvider.isConnected).toHaveBeenCalledTimes(1);
-      expect(status).toEqual({ connected: true });
+      expect(status).toEqual(true);
     });
   });
 });

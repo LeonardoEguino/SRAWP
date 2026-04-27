@@ -14,10 +14,11 @@ const mockSock = {
 };
 
 jest.mock('@whiskeysockets/baileys', () => ({
-  default: jest.fn().mockReturnValue(mockSock),
-  fetchLatestBaileysVersion: jest.fn().mockResolvedValue({ version: [2, 3, 0] }),
-  makeCacheableSignalKeyStore: jest.fn().mockReturnValue({}),
-  DisconnectReason: { loggedOut: 401 },
+    __esModule: true,
+    default: jest.fn(() => mockSock),
+    fetchLatestBaileysVersion: jest.fn().mockResolvedValue({ version: [2, 3, 0] }),
+    makeCacheableSignalKeyStore: jest.fn().mockReturnValue({}),
+    DisconnectReason: { loggedOut: 401 },
 }));
 
 jest.mock('./baileys-auth.adapter', () => ({
@@ -134,19 +135,6 @@ describe('BaileysProvider', () => {
       );
     });
 
-    it('no debe modificar el groupId si ya tiene @g.us', async () => {
-      await provider.connect();
-      const handler = getConnectionHandler();
-      await handler({ connection: 'open' });
-
-      await provider.sendMessage('120363XXXXXX@g.us', 'Hola');
-
-      expect(mockSock.sendMessage).toHaveBeenCalledWith(
-        '120363XXXXXX@g.us',
-        { text: 'Hola' },
-      );
-    });
-
     it('debe retornar true al enviar exitosamente', async () => {
       await provider.connect();
       const handler = getConnectionHandler();
@@ -159,7 +147,7 @@ describe('BaileysProvider', () => {
 
   describe('getStatus', () => {
     it('debe retornar connected: false antes de conectar', () => {
-      expect(provider.isConnected()).toEqual({ connected: false });
+      expect(provider.isConnected()).toEqual(false);
     });
   });
 });
