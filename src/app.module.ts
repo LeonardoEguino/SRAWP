@@ -12,10 +12,10 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
       isGlobal: true,
       validationSchema
     }),
+    ScheduleModule.forRoot(),
     DatabaseModule, 
-    AcademicCoreModule, WhatsappModule
+    AcademicCoreModule, 
+    WhatsappModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
