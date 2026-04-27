@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15
+    container_name: academic_db
+    restart: always
+    environment:
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: academic_reminders
+    ports: # En plural
+      - '5432:5432'
+    volumes: # En plural
+      - postgres_data:/var/lib/postgresql/data
+    
+volumes:
+  postgres_data:
