@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/app.config'
 import { ScheduleModule } from '@nestjs/schedule';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
+import { GoogeCalendarModule } from './google-calendar/google-calendar.module';
+import { GoogleCalendarService } from './google-calendar/google-calendar.service';
 
 @Module({
   imports: [
@@ -15,7 +17,9 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
     ScheduleModule.forRoot(),
     DatabaseModule, 
     AcademicCoreModule, 
-    WhatsappModule,
+    WhatsappModule, 
+    GoogeCalendarModule,
   ],
+  providers: [GoogleCalendarService],
 })
 export class AppModule {}
