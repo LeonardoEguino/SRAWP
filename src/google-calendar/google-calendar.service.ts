@@ -11,7 +11,7 @@ export class GoogleCalendarService implements OnModuleInit{
     constructor(private readonly config: ConfigService) { }
     
     onModuleInit() {
-        throw new Error('Method not implemented.');
+        this.initializeClient();
     }
 
     private initializeClient(): void {
