@@ -29,9 +29,9 @@ export class BaileysProvider implements WhatsappProvider {
             version,
             auth: {
                 creds: state.creds,
-                keys: makeCacheableSignalKeyStore(state.keys, pino()),
+                keys: makeCacheableSignalKeyStore(state.keys, pino({level: 'silent'})),
             },
-            logger: pino(),
+            logger: pino({level: 'silent'}),
             browser: ['Academic Reminders', 'Chrome', '1.0.0'],
         });
 
