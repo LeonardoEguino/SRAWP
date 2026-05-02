@@ -4,7 +4,7 @@ import { WhatsappService } from '../whatsapp/whatsapp.service';
 import { AcademicModule } from '../academic-core/entities/academic-module.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SentReminder } from '../academic-core/entities/sent-reminder.entity';
+import { SentReminder } from './entities/sent-reminder.entity';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { CalendarEvent } from '../google-calendar/interfaces/calendar-event.interface';
 
