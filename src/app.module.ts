@@ -7,6 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
 import { GoogeCalendarModule } from './google-calendar/google-calendar.module';
 import { GoogleCalendarService } from './google-calendar/google-calendar.service';
+import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { GoogleCalendarService } from './google-calendar/google-calendar.service
     DatabaseModule, 
     AcademicCoreModule, 
     WhatsappModule, 
-    GoogeCalendarModule,
+    GoogeCalendarModule, SchedulerModule,
   ],
   providers: [GoogleCalendarService],
 })

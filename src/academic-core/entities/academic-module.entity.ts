@@ -9,8 +9,8 @@ export class AcademicModule {
     @Column()
     name: string;
 
-    // @Column({unique: true})
-    // calendarPrefix: string;
+    @Column({unique: true})
+    calendarPrefix: string;
 
     @CreateDateColumn()
     createdAt: Date;
