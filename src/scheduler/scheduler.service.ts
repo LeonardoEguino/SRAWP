@@ -10,7 +10,7 @@ import { CalendarEvent } from '../google-calendar/interfaces/calendar-event.inte
 
 @Injectable()
 export class SchedulerService {
-    private readonly logger = new Logger(Scheduler.name);
+    private readonly logger = new Logger(SchedulerService.name);
 
     constructor(
         private readonly calendarService: GoogleCalendarService,
