@@ -60,7 +60,7 @@ export class SchedulerService {
             relations: ['program'],
         });
 
-        return module?.program.accountingCode ?? null;
+        return module?.program?.accountingCode ?? null;
     }
 
     private extractPrefix(title: string): string | null {
@@ -102,7 +102,7 @@ export class SchedulerService {
     private randomDelay(minMinutes: number, maxMinutes: number): number {
         const min = minMinutes * 60 * 1000;
         const max = maxMinutes * 60 * 1000;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     private sleep(ms: number): Promise<void> {

@@ -82,7 +82,7 @@ describe('SchedulerService', () => {
   describe('handleReminder()', () => {
     beforeEach(() => {
       // Mockear sleep/delay para que los tests no esperen
-      jest.spyOn(service as any, 'scheduleWithDelay').mockResolvedValue(undefined);
+      jest.spyOn(service as any, 'sleep').mockResolvedValue(undefined);
     });
 
     it('caso feliz: llama a getUpcomingMeetEvents(15)', async () => {
@@ -324,11 +324,14 @@ describe('SchedulerService', () => {
     });
 
     it('loggea error si sendMessage() retorna false', async () => {
+      const loggerSpy = jest.spyOn((service as any).logger, 'error').mockImplementation(() => {});
+
       whatsappService.sendMessage.mockResolvedValue(false);
 
       await (service as any).sendReminder(event, groupId);
 
-      expect(console.error).toHaveBeenCalled();
+      expect(loggerSpy).toHaveBeenCalled();
+      loggerSpy.mockRestore()
     });
   });
 
