@@ -24,7 +24,7 @@ export class SchedulerService {
     ) {}
 
     @Cron(CronExpression.EVERY_10_MINUTES)
-    async handleReminder(): Promise<void> {
+    async handleInmediateReminder(): Promise<void> {
         this.logger.log('Escaneado eventos proximos...');
 
         const events = await this.calendarService.getUpcomingMeetEvents(15);
