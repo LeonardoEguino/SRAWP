@@ -1,6 +1,6 @@
 services:
   app:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     container_name: srawp_app
@@ -8,10 +8,10 @@ services:
     env_file:
       - .env.prod
     depends_on:
-      - db:
+      db:
         condition: service_healthy
     ports:
-      - '3000:3000'
+      - '3007:3007'
     networks:
       - srawp_network
 
@@ -20,13 +20,13 @@ services:
     container_name: srawp_db
     restart: always
     environment:
-      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
