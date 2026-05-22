@@ -1,0 +1,41 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    container_name: srawp_app
+    restart: always
+    env_file:
+      - .env.prod
+    depends_on:
+      - db:
+        condition: service_healthy
+    ports:
+      - '3000:3000'
+    networks:
+      - srawp_network
+
+  db:
+    image: postgres:15
+    container_name: srawp_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - srawp_network
+
+networks:
+  srawp_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
