@@ -2,7 +2,7 @@ services:
   app:
     build: 
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: srawp_app
     restart: always
     env_file:
