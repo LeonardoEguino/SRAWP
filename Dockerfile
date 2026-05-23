@@ -19,4 +19,6 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/main"]
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+ENTRYPOINT [ "sh", "entrypoint.sh" ]
